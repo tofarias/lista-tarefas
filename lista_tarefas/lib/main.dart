@@ -20,6 +20,18 @@ class _HomeState extends State<Home> {
   final _toDoController = TextEditingController();
   List _toDoList = [];
 
+
+  @override
+  void initState() {
+    super.initState();
+
+    _readData().then( (data){
+      setState(() {
+        _toDoList = json.decode(data);
+      });
+    });
+  }
+
   void _addToDo(){
 
     setState(() {
